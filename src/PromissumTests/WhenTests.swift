@@ -20,9 +20,9 @@ class WhenTests: XCTestCase {
     let p1 = source1.promise
     let p2 = source2.promise
 
-    whenBoth(p1, p2)
-      .then { (x, y) in
-        value = x + y
+    let p = p1 && p2
+    p.then { (x, y) in
+      value = x + y
     }
 
     source1.resolve(40)
@@ -39,10 +39,10 @@ class WhenTests: XCTestCase {
     let p1 = source1.promise
     let p2 = source2.promise
 
-    whenBoth(p1, p2)
-      .catch { e in
-        error = e.code
-      }
+    let p = p1 && p2
+    p.catch { e in
+      error = e.code
+    }
 
     source1.resolve(40)
     source2.reject(NSError(domain: PromissumErrorDomain, code: 42, userInfo: nil))
@@ -58,8 +58,8 @@ class WhenTests: XCTestCase {
     let p1 = source1.promise
     let p2 = source2.promise
 
-    whenEither(p1, p2)
-      .then { x in
+    let p = p1 || p2
+    p.then { x in
         value = x
       }
       .catch { e in
@@ -80,8 +80,8 @@ class WhenTests: XCTestCase {
     let p1 = source1.promise
     let p2 = source2.promise
 
-    whenEither(p1, p2)
-      .then { x in
+    let p = p1 || p2
+    p.then { x in
         value = x
       }
       .catch { e in
@@ -102,8 +102,8 @@ class WhenTests: XCTestCase {
     let p1 = source1.promise
     let p2 = source2.promise
 
-    whenEither(p1, p2)
-      .then { x in
+    let p = p1 || p2
+    p.then { x in
         value = x
       }
       .catch { e in
