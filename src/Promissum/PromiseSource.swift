@@ -74,8 +74,10 @@ Note that `PromiseSource.deinit` by default will log a warning when an unresolve
 public class PromiseSource<Value, Error> : OriginalSource {
   typealias ResultHandler = Result<Value, Error> -> Void
 
-  private var handlers: [Result<Value, Error> -> Void] = []
   private let originalSource: OriginalSource?
+  private let dispatch: DispatchMethod
+
+  private var handlers: [Result<Value, Error> -> Void] = []
 
   /// The current state of the PromiseSource
   public var state: State<Value, Error>
@@ -89,14 +91,14 @@ public class PromiseSource<Value, Error> : OriginalSource {
   ///
   /// - parameter warnUnresolvedDeinit: Print a warning on deinit of an unresolved PromiseSource
   public convenience init(warnUnresolvedDeinit: Bool = true) {
-    self.init(state: .Unresolved, originalSource: nil, warnUnresolvedDeinit: warnUnresolvedDeinit)
+    self.init(state: .Unresolved, dispatch: .Unspecified, originalSource: nil, warnUnresolvedDeinit: warnUnresolvedDeinit)
   }
 
-  internal init(state: State<Value, Error>, originalSource: OriginalSource?, warnUnresolvedDeinit: Bool) {
+  internal init(state: State<Value, Error>, dispatch: DispatchMethod, originalSource: OriginalSource?, warnUnresolvedDeinit: Bool) {
+    self.state = state
+    self.dispatch = dispatch
     self.originalSource = originalSource
     self.warnUnresolvedDeinit = warnUnresolvedDeinit
-
-    self.state = state
   }
 
   deinit {
@@ -155,7 +157,7 @@ public class PromiseSource<Value, Error> : OriginalSource {
   private func executeResultHandlers(result: Result<Value, Error>) {
 
     // Call all previously scheduled handlers
-    callHandlers(result, handlers: handlers)
+      callHandlers(result, handlers: handlers, dispatch: dispatch)
 
     // Cleanup
     handlers = []
@@ -179,11 +181,11 @@ public class PromiseSource<Value, Error> : OriginalSource {
           switch self.state {
           case .Resolved(let value):
             // Value is already available, call handler immediately
-            callHandlers(Result.Value(value), handlers: [handler])
+            callHandlers(Result.Value(value), handlers: [handler], dispatch: self.dispatch)
 
           case .Rejected(let error):
             // Error is already available, call handler immediately
-            callHandlers(Result.Error(error), handlers: [handler])
+            callHandlers(Result.Error(error), handlers: [handler], dispatch: self.dispatch)
 
           case .Unresolved:
             assertionFailure("callback should only be called if state is resolved or rejected")
@@ -197,17 +199,32 @@ public class PromiseSource<Value, Error> : OriginalSource {
 
     case .Resolved(let value):
       // Value is already available, call handler immediately
-      callHandlers(Result.Value(value), handlers: [handler])
+      callHandlers(Result.Value(value), handlers: [handler], dispatch: dispatch)
 
     case .Rejected(let error):
       // Error is already available, call handler immediately
-      callHandlers(Result.Error(error), handlers: [handler])
+      callHandlers(Result.Error(error), handlers: [handler], dispatch: dispatch)
     }
   }
 }
 
-internal func callHandlers<T>(arg: T, handlers: [T -> Void]) {
-  for handler in handlers {
-    handler(arg)
+internal func callHandlers<T>(arg: T, handlers: [T -> Void], dispatch: DispatchMethod) {
+  switch dispatch {
+  case .Unspecified:
+    dispatch_async(dispatch_get_main_queue()) {
+      for handler in handlers {
+        handler(arg)
+      }
+    }
+  case .Synchronous:
+    for handler in handlers {
+      handler(arg)
+    }
+  case let .OnQueue(queue):
+    dispatch_async(queue) {
+      for handler in handlers {
+        handler(arg)
+      }
+    }
   }
 }

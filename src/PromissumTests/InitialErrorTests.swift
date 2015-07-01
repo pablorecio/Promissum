@@ -33,7 +33,14 @@ class InitialErrorTests: XCTestCase {
       error = e
     }
 
-    XCTAssert(error?.code == 42, "Error should be set")
+    // Check assertions
+    let expectation = expectationWithDescription("Promise didn't finish")
+    p.finally {
+      XCTAssert(error?.code == 42, "Error should be set")
+      expectation.fulfill()
+    }
+
+    waitForExpectationsWithTimeout(0.03, handler: nil)
   }
 
   func testErrorMap() {
@@ -46,7 +53,14 @@ class InitialErrorTests: XCTestCase {
       value = x
     }
 
-    XCTAssert(value == 43, "Value should be set")
+    // Check assertions
+    let expectation = expectationWithDescription("Promise didn't finish")
+    p.finally {
+      XCTAssert(value == 43, "Value should be set")
+      expectation.fulfill()
+    }
+
+    waitForExpectationsWithTimeout(0.03, handler: nil)
   }
 
   func testErrorFlatMap() {
@@ -59,7 +73,14 @@ class InitialErrorTests: XCTestCase {
       value = x
     }
 
-    XCTAssert(value == 43, "Value should be set")
+    // Check assertions
+    let expectation = expectationWithDescription("Promise didn't finish")
+    p.finally {
+      XCTAssert(value == 43, "Value should be set")
+      expectation.fulfill()
+    }
+
+    waitForExpectationsWithTimeout(0.03, handler: nil)
   }
 
   func testErrorFlatMap2() {
@@ -72,7 +93,14 @@ class InitialErrorTests: XCTestCase {
       error = e
     }
 
-    XCTAssert(error?.code == 43, "Error should be set")
+    // Check assertions
+    let expectation = expectationWithDescription("Promise didn't finish")
+    p.finally {
+      XCTAssert(error?.code == 43, "Error should be set")
+      expectation.fulfill()
+    }
+
+    waitForExpectationsWithTimeout(0.03, handler: nil)
   }
 
   func testFinally() {
@@ -84,6 +112,13 @@ class InitialErrorTests: XCTestCase {
       finally = true
     }
 
-    XCTAssert(finally, "Finally should be set")
+    // Check assertions
+    let expectation = expectationWithDescription("Promise didn't finish")
+    p.finally {
+      XCTAssert(finally, "Finally should be set")
+      expectation.fulfill()
+    }
+
+    waitForExpectationsWithTimeout(0.03, handler: nil)
   }
 }
