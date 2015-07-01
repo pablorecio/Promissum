@@ -271,6 +271,25 @@ public class Promise<Value, Error> {
   }
 
 
+  // MARK: Dispatch methods
+
+  public func dispatchOn(queue: dispatch_queue_t) -> Promise<Value, Error> {
+    return dispatchOn(.OnQueue(queue))
+  }
+
+  public func dispatchSync() -> Promise<Value, Error> {
+    return dispatchOn(.Synchronous)
+  }
+
+  internal func dispatchOn(dispatch: DispatchMethod) -> Promise<Value, Error> {
+    let resultSource = PromiseSource<Value, Error>(state: .Unresolved, dispatch: dispatch, originalSource: self.source, warnUnresolvedDeinit: true)
+
+    source.addOrCallResultHandler(resultSource.resolveResult)
+
+    return resultSource.promise
+  }
+
+
   // MARK: - Value combinators
 
   /// Return a Promise containing the results of mapping `transform` over the value of `self`.
