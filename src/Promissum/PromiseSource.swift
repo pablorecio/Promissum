@@ -94,6 +94,14 @@ public class PromiseSource<Value, Error> : OriginalSource {
     self.init(state: .Unresolved, dispatch: .Unspecified, originalSource: nil, warnUnresolvedDeinit: warnUnresolvedDeinit)
   }
 
+  /// Initialize a new Unresolved PromiseSource
+  ///
+  /// - parameter dispatch: Dispatch method for this PromiseSource
+  /// - parameter warnUnresolvedDeinit: Print a warning on deinit of an unresolved PromiseSource
+  public convenience init(dispatch: DispatchMethod, warnUnresolvedDeinit: Bool = true) {
+    self.init(state: .Unresolved, dispatch: dispatch, originalSource: nil, warnUnresolvedDeinit: warnUnresolvedDeinit)
+  }
+
   internal init(state: State<Value, Error>, dispatch: DispatchMethod, originalSource: OriginalSource?, warnUnresolvedDeinit: Bool) {
     self.state = state
     self.dispatch = dispatch

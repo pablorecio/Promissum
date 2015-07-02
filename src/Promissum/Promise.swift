@@ -313,7 +313,7 @@ public class Promise<Value, Error> {
 
   /// Returns the flattened result of mapping `transform` over the value of `self`.
   public func flatMap<NewValue>(transform: Value -> Promise<NewValue, Error>) -> Promise<NewValue, Error> {
-    let resultSource = PromiseSource<NewValue, Error>()
+    let resultSource = PromiseSource<NewValue, Error>(state: .Unresolved, dispatch: .Synchronous, originalSource: nil, warnUnresolvedDeinit: true)
 
     let handler: Result<Value, Error> -> Void = { result in
       switch result {
@@ -356,7 +356,7 @@ public class Promise<Value, Error> {
 
   /// Returns the flattened result of mapping `transform` over the error of `self`.
   public func flatMapError<NewError>(transform: Error -> Promise<Value, NewError>) -> Promise<Value, NewError> {
-    let resultSource = PromiseSource<Value, NewError>()
+    let resultSource = PromiseSource<Value, NewError>(state: .Unresolved, dispatch: .Synchronous, originalSource: nil, warnUnresolvedDeinit: true)
 
     let handler: Result<Value, Error> -> Void = { result in
       switch result {
