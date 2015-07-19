@@ -75,7 +75,7 @@ public class PromiseSource<Value, Error> : OriginalSource {
   typealias ResultHandler = Result<Value, Error> -> Void
 
   private let originalSource: OriginalSource?
-  private let dispatch: DispatchMethod
+  internal let dispatch: DispatchMethod
 
   private var handlers: [Result<Value, Error> -> Void] = []
 
@@ -215,22 +215,41 @@ public class PromiseSource<Value, Error> : OriginalSource {
 }
 
 internal func callHandlers<T>(arg: T, handlers: [T -> Void], dispatch: DispatchMethod) {
+
+  let queue: dispatch_queue_t?
+
+  // Decide dispatch queue based on provided dispatch method
   switch dispatch {
   case .Unspecified:
-    dispatch_async(dispatch_get_main_queue()) {
-      for handler in handlers {
-        handler(arg)
-      }
-    }
+
+    queue = NSThread.isMainThread() ? nil : dispatch_get_main_queue()
+
   case .Synchronous:
-    for handler in handlers {
-      handler(arg)
-    }
-  case let .OnQueue(queue):
+    queue = nil
+
+  case let .OnQueue(targetQueue):
+    let currentQueueLabel = String(UTF8String: dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL))!
+    let targetQueueLabel = String(UTF8String: dispatch_queue_get_label(targetQueue))!
+
+    // Assume on correct queue if labels match, but be conservative if label is empty
+    let alreadyOnQueue = currentQueueLabel == targetQueueLabel && currentQueueLabel != ""
+
+    queue = alreadyOnQueue ? nil : targetQueue
+  }
+
+  // Only dispatch async if currect queue isn't correct
+  if let queue = queue {
+    let targetQueueLabel = String(UTF8String: dispatch_queue_get_label(queue))!
+    print("targetQueue: \(targetQueueLabel)")
     dispatch_async(queue) {
       for handler in handlers {
         handler(arg)
       }
+    }
+  }
+  else {
+    for handler in handlers {
+      handler(arg)
     }
   }
 }
