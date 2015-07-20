@@ -281,6 +281,10 @@ public class Promise<Value, Error> {
     return dispatchOn(.Synchronous)
   }
 
+  public func dispatchMain() -> Promise<Value, Error> {
+    return dispatchOn(dispatch_get_main_queue())
+  }
+
   internal func dispatchOn(dispatch: DispatchMethod) -> Promise<Value, Error> {
     let resultSource = PromiseSource<Value, Error>(state: .Unresolved, dispatch: dispatch, originalSource: self.source, warnUnresolvedDeinit: true)
 
