@@ -10,7 +10,7 @@ import Foundation
 
 // This Notifier is used to implement Promise.map
 internal protocol OriginalSource {
-  func registerHandler(handler: () -> Void)
+  func registerHandler(dispatch: DispatchMethod, handler: () -> Void)
 }
 
 /**
@@ -75,9 +75,9 @@ public class PromiseSource<Value, Error> : OriginalSource {
   typealias ResultHandler = Result<Value, Error> -> Void
 
   private let originalSource: OriginalSource?
-  internal let dispatch: DispatchMethod
+  internal let dispatchMethod: DispatchMethod
 
-  private var handlers: [Result<Value, Error> -> Void] = []
+  private var handlers: [(Result<Value, Error> -> Void, DispatchMethod)] = []
 
   /// The current state of the PromiseSource
   public var state: State<Value, Error>
@@ -104,7 +104,7 @@ public class PromiseSource<Value, Error> : OriginalSource {
 
   internal init(state: State<Value, Error>, dispatch: DispatchMethod, originalSource: OriginalSource?, warnUnresolvedDeinit: Bool) {
     self.state = state
-    self.dispatch = dispatch
+    self.dispatchMethod = dispatch
     self.originalSource = originalSource
     self.warnUnresolvedDeinit = warnUnresolvedDeinit
   }
@@ -163,7 +163,7 @@ public class PromiseSource<Value, Error> : OriginalSource {
   private func executeResultHandlers(result: Result<Value, Error>) {
 
     // Call all previously scheduled handlers
-      callHandlers(result, handlers: handlers, dispatch: dispatch)
+    callHandlers(result, handlers: handlers)
 
     // Cleanup
     handlers = []
@@ -171,27 +171,27 @@ public class PromiseSource<Value, Error> : OriginalSource {
 
   // MARK: Adding result handlers
 
-  internal func registerHandler(handler: () -> Void) {
-    addOrCallResultHandler({ _ in handler() })
+  internal func registerHandler(dispatch: DispatchMethod, handler: () -> Void) {
+    addOrCallResultHandler(dispatch, handler: { _ in handler() })
   }
 
-  internal func addOrCallResultHandler(handler: Result<Value, Error> -> Void) {
+  internal func addOrCallResultHandler(dispatch: DispatchMethod, handler: Result<Value, Error> -> Void) {
 
     switch state {
     case .Unresolved:
       // Register with original source
       // Only call handlers after original completes
       if let originalSource = originalSource {
-        originalSource.registerHandler {
+        originalSource.registerHandler(dispatch) {
 
           switch self.state {
           case .Resolved(let value):
             // Value is already available, call handler immediately
-            callHandlers(Result.Value(value), handlers: [handler], dispatch: self.dispatch)
+            callHandlers(Result.Value(value), handlers: [(handler, dispatch)])
 
           case .Rejected(let error):
             // Error is already available, call handler immediately
-            callHandlers(Result.Error(error), handlers: [handler], dispatch: self.dispatch)
+            callHandlers(Result.Error(error), handlers: [(handler, dispatch)])
 
           case .Unresolved:
             assertionFailure("callback should only be called if state is resolved or rejected")
@@ -200,54 +200,55 @@ public class PromiseSource<Value, Error> : OriginalSource {
       }
       else {
         // Save handler for later
-        handlers.append(handler)
+        handlers.append((handler, dispatch))
       }
 
     case .Resolved(let value):
       // Value is already available, call handler immediately
-      callHandlers(Result.Value(value), handlers: [handler], dispatch: dispatch)
+      callHandlers(Result.Value(value), handlers: [(handler, dispatch)])
 
     case .Rejected(let error):
       // Error is already available, call handler immediately
-      callHandlers(Result.Error(error), handlers: [handler], dispatch: dispatch)
+      callHandlers(Result.Error(error), handlers: [(handler, dispatch)])
     }
   }
 }
 
-internal func callHandlers<T>(arg: T, handlers: [T -> Void], dispatch: DispatchMethod) {
+internal func callHandlers<T>(arg: T, handlers: [(T -> Void, DispatchMethod)]) {
 
-  let queue: dispatch_queue_t?
+  for (handler, dispatch) in handlers {
+    switch dispatch {
+    case .Unspecified:
 
-  // Decide dispatch queue based on provided dispatch method
-  switch dispatch {
-  case .Unspecified:
-
-    queue = NSThread.isMainThread() ? nil : dispatch_get_main_queue()
-
-  case .Synchronous:
-    queue = nil
-
-  case let .OnQueue(targetQueue):
-    let currentQueueLabel = String(UTF8String: dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL))!
-    let targetQueueLabel = String(UTF8String: dispatch_queue_get_label(targetQueue))!
-
-    // Assume on correct queue if labels match, but be conservative if label is empty
-    let alreadyOnQueue = currentQueueLabel == targetQueueLabel && currentQueueLabel != ""
-
-    queue = alreadyOnQueue ? nil : targetQueue
-  }
-
-  // Only dispatch async if currect queue isn't correct
-  if let queue = queue {
-    for handler in handlers {
-      dispatch_async(queue) {
+      if NSThread.isMainThread() {
         handler(arg)
       }
-    }
-  }
-  else {
-    for handler in handlers {
+      else {
+        dispatch_async(dispatch_get_main_queue()) {
+          handler(arg)
+        }
+      }
+
+    case .Synchronous:
+
       handler(arg)
+
+    case let .OnQueue(targetQueue):
+      let currentQueueLabel = String(UTF8String: dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL))!
+      let targetQueueLabel = String(UTF8String: dispatch_queue_get_label(targetQueue))!
+
+      // Assume on correct queue if labels match, but be conservative if label is empty
+      let alreadyOnQueue = currentQueueLabel == targetQueueLabel && currentQueueLabel != ""
+
+      if alreadyOnQueue {
+        handler(arg)
+      }
+      else {
+        dispatch_async(targetQueue) {
+          handler(arg)
+        }
+      }
+
     }
   }
 }

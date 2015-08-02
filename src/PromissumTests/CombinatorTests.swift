@@ -305,7 +305,7 @@ class CombinatorTests: XCTestCase {
 
     let promises: [Promise<Int, NSError>] = []
 
-    let p = whenAny(promises)
+    whenAny(promises)
       .then { x in
         value = x
       }
@@ -315,7 +315,7 @@ class CombinatorTests: XCTestCase {
 
     // Check assertions
     let expectation = expectationWithDescription("Promise didn't finish")
-    p.finally {
+    delay(0.01) {
       XCTAssert(value == nil, "Value shouldn't be set")
       XCTAssert(error == nil, "Error shouldn't be set")
       expectation.fulfill()

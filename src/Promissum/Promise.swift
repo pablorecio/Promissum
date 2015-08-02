@@ -185,7 +185,7 @@ public class Promise<Value, Error> {
       }
     }
 
-    source.addOrCallResultHandler(resultHandler)
+    source.addOrCallResultHandler(source.dispatchMethod, handler: resultHandler)
 
     return self
   }
@@ -215,7 +215,7 @@ public class Promise<Value, Error> {
       }
     }
 
-    source.addOrCallResultHandler(resultHandler)
+    source.addOrCallResultHandler(source.dispatchMethod, handler: resultHandler)
 
     return self
   }
@@ -242,7 +242,7 @@ public class Promise<Value, Error> {
       handler()
     }
 
-    source.addOrCallResultHandler(resultHandler)
+    source.addOrCallResultHandler(source.dispatchMethod, handler: resultHandler)
 
     return self
   }
@@ -265,7 +265,7 @@ public class Promise<Value, Error> {
   /// the handler is called synchronously on the thread where `PromiseSource.resolve` or `PromiseSource.reject` is called.
   public func finallyResult(handler: Result<Value, Error> -> Void) -> Promise<Value, Error> {
 
-    source.addOrCallResultHandler(handler)
+    source.addOrCallResultHandler(source.dispatchMethod, handler: handler)
 
     return self
   }
@@ -278,6 +278,10 @@ public class Promise<Value, Error> {
   }
 
   public func dispatchSync() -> Promise<Value, Error> {
+    guard case .Unspecified = source.dispatchMethod else {
+      return self
+    }
+
     return dispatchOn(.Synchronous)
   }
 
@@ -288,7 +292,7 @@ public class Promise<Value, Error> {
   internal func dispatchOn(dispatch: DispatchMethod) -> Promise<Value, Error> {
     let resultSource = PromiseSource<Value, Error>(state: .Unresolved, dispatch: dispatch, originalSource: self.source, warnUnresolvedDeinit: true)
 
-    source.addOrCallResultHandler(resultSource.resolveResult)
+    source.addOrCallResultHandler(dispatch, handler: resultSource.resolveResult)
 
     return resultSource.promise
   }
@@ -298,7 +302,7 @@ public class Promise<Value, Error> {
 
   /// Return a Promise containing the results of mapping `transform` over the value of `self`.
   public func map<NewValue>(transform: Value -> NewValue) -> Promise<NewValue, Error> {
-    let resultSource = PromiseSource<NewValue, Error>(state: .Unresolved, dispatch: source.dispatch, originalSource: self.source, warnUnresolvedDeinit: true)
+    let resultSource = PromiseSource<NewValue, Error>(state: .Unresolved, dispatch: source.dispatchMethod, originalSource: self.source, warnUnresolvedDeinit: true)
 
     let handler: Result<Value, Error> -> Void = { result in
       switch result {
@@ -310,14 +314,14 @@ public class Promise<Value, Error> {
       }
     }
 
-    source.addOrCallResultHandler(handler)
+    source.addOrCallResultHandler(source.dispatchMethod, handler: handler)
 
     return resultSource.promise
   }
 
   /// Returns the flattened result of mapping `transform` over the value of `self`.
   public func flatMap<NewValue>(transform: Value -> Promise<NewValue, Error>) -> Promise<NewValue, Error> {
-    let resultSource = PromiseSource<NewValue, Error>(state: .Unresolved, dispatch: source.dispatch, originalSource: nil, warnUnresolvedDeinit: true)
+    let resultSource = PromiseSource<NewValue, Error>(state: .Unresolved, dispatch: source.dispatchMethod, originalSource: nil, warnUnresolvedDeinit: true)
 
     let handler: Result<Value, Error> -> Void = { result in
       switch result {
@@ -331,7 +335,7 @@ public class Promise<Value, Error> {
       }
     }
 
-    source.addOrCallResultHandler(handler)
+    source.addOrCallResultHandler(source.dispatchMethod, handler: handler)
 
     return resultSource.promise
   }
@@ -341,7 +345,7 @@ public class Promise<Value, Error> {
 
   /// Return a Promise containing the results of mapping `transform` over the error of `self`.
   public func mapError<NewError>(transform: Error -> NewError) -> Promise<Value, NewError> {
-    let resultSource = PromiseSource<Value, NewError>(state: .Unresolved, dispatch: source.dispatch, originalSource: self.source, warnUnresolvedDeinit: true)
+    let resultSource = PromiseSource<Value, NewError>(state: .Unresolved, dispatch: source.dispatchMethod, originalSource: self.source, warnUnresolvedDeinit: true)
 
     let handler: Result<Value, Error> -> Void = { result in
       switch result {
@@ -353,14 +357,14 @@ public class Promise<Value, Error> {
       }
     }
 
-    source.addOrCallResultHandler(handler)
+    source.addOrCallResultHandler(source.dispatchMethod, handler: handler)
 
     return resultSource.promise
   }
 
   /// Returns the flattened result of mapping `transform` over the error of `self`.
   public func flatMapError<NewError>(transform: Error -> Promise<Value, NewError>) -> Promise<Value, NewError> {
-    let resultSource = PromiseSource<Value, NewError>(state: .Unresolved, dispatch: source.dispatch, originalSource: nil, warnUnresolvedDeinit: true)
+    let resultSource = PromiseSource<Value, NewError>(state: .Unresolved, dispatch: source.dispatchMethod, originalSource: nil, warnUnresolvedDeinit: true)
 
     let handler: Result<Value, Error> -> Void = { result in
       switch result {
@@ -374,7 +378,7 @@ public class Promise<Value, Error> {
       }
     }
 
-    source.addOrCallResultHandler(handler)
+    source.addOrCallResultHandler(source.dispatchMethod, handler: handler)
 
     return resultSource.promise
   }
@@ -383,7 +387,7 @@ public class Promise<Value, Error> {
 
   /// Return a Promise containing the results of mapping `transform` over the result of `self`.
   public func mapResult<NewValue, NewError>(transform: Result<Value, Error> -> Result<NewValue, NewError>) -> Promise<NewValue, NewError> {
-    let resultSource = PromiseSource<NewValue, NewError>(state: .Unresolved, dispatch: source.dispatch, originalSource: self.source, warnUnresolvedDeinit: true)
+    let resultSource = PromiseSource<NewValue, NewError>(state: .Unresolved, dispatch: source.dispatchMethod, originalSource: self.source, warnUnresolvedDeinit: true)
 
     let handler: Result<Value, Error> -> Void = { result in
       switch transform(result) {
@@ -394,14 +398,14 @@ public class Promise<Value, Error> {
       }
     }
 
-    source.addOrCallResultHandler(handler)
+    source.addOrCallResultHandler(source.dispatchMethod, handler: handler)
 
     return resultSource.promise
   }
 
   /// Returns the flattened result of mapping `transform` over the result of `self`.
   public func flatMapResult<NewValue, NewError>(transform: Result<Value, Error> -> Promise<NewValue, NewError>) -> Promise<NewValue, NewError> {
-    let resultSource = PromiseSource<NewValue, NewError>(state: .Unresolved, dispatch: source.dispatch, originalSource: nil, warnUnresolvedDeinit: true)
+    let resultSource = PromiseSource<NewValue, NewError>(state: .Unresolved, dispatch: source.dispatchMethod, originalSource: nil, warnUnresolvedDeinit: true)
 
     let handler: Result<Value, Error> -> Void = { result in
       let transformedPromise = transform(result)
@@ -410,7 +414,7 @@ public class Promise<Value, Error> {
         .trap(resultSource.reject)
     }
 
-    source.addOrCallResultHandler(handler)
+    source.addOrCallResultHandler(source.dispatchMethod, handler: handler)
 
     return resultSource.promise
   }
