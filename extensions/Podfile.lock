@@ -7,7 +7,8 @@ DEPENDENCIES:
   - CoreDataKit (~> 0.8)
 
 SPEC CHECKSUMS:
-  Alamofire: 2f13548b29d25a58ecd91c9225fb51493e2b782b
-  CoreDataKit: a44e3ce0b0dd8500ea8cf72e17b5318b9ca87aff
+  Alamofire: 11a6022f5089887d92ffb5a3014c97a0a915ab98
+  CoreDataKit: 3007b1108fcf9c9fd0d69e42479fa5c1cc59aefa
+  Promissum: 17bf96fb317b1274380aabb960f0c44c023cc4f0
 
 COCOAPODS: 0.38.2
