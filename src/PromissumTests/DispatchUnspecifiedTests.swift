@@ -50,6 +50,26 @@ class DispatchUnspecifiedTests: XCTestCase {
     waitForExpectationsWithTimeout(0.03, handler: nil)
   }
 
+  func testUnspecifiedResolved() {
+
+    let p = Promise<Int, NoError>(value: 42)
+
+    // Check assertions
+    let expectation = expectationWithDescription("Promise didn't finish")
+
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+      XCTAssert(!NSThread.isMainThread(), "Shouldn't be running on main thread")
+
+      p.then { _ in
+        XCTAssert(NSThread.isMainThread(), "callback for unspecified dispatch method should be called on main queue")
+        expectation.fulfill()
+      }
+    }
+
+    waitForExpectationsWithTimeout(0.03, handler: nil)
+  }
+
   func testUnspecifiedThen() {
     var calls = 0
 
