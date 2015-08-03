@@ -1,14 +1,13 @@
 PODS:
-  - Alamofire (2.0.0)
-  - CoreDataKit (0.8.0)
+  - Alamofire (2.0.2)
+  - CoreDataKit (0.9.0)
 
 DEPENDENCIES:
   - Alamofire (~> 2.0)
   - CoreDataKit (~> 0.8)
 
 SPEC CHECKSUMS:
-  Alamofire: 11a6022f5089887d92ffb5a3014c97a0a915ab98
-  CoreDataKit: 3007b1108fcf9c9fd0d69e42479fa5c1cc59aefa
-  Promissum: 17bf96fb317b1274380aabb960f0c44c023cc4f0
+  Alamofire: 8edbab00802a752bb5240cc2abe70e7e881488ad
+  CoreDataKit: 6988bc7162111a808c003e3afcd2d9f3eeb5d753
 
 COCOAPODS: 0.38.2

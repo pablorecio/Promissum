@@ -22,6 +22,7 @@
 		E2857EFA1B8DC09E00A9B97C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857EF31B8DC09E00A9B97C /* Result.swift */; settings = {ASSET_TAGS = (); }; };
 		E2857EFB1B8DC09E00A9B97C /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857EF41B8DC09E00A9B97C /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		E28B567F1A5C92A900F2D6B0 /* CoreDataKit+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B567E1A5C92A900F2D6B0 /* CoreDataKit+Promise.swift */; };
+		E2DDC2A91BC2CC78007186AD /* DispatchMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DDC2A81BC2CC78007186AD /* DispatchMethod.swift */; settings = {ASSET_TAGS = (); }; };
 		EC06AA6C18AAD5C26DEBD5DC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6CC1C6B4D883A36C4F959D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F4047E204C56122B791F2CEB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6CC1C6B4D883A36C4F959D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -71,6 +72,7 @@
 		E2857EF31B8DC09E00A9B97C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		E2857EF41B8DC09E00A9B97C /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		E28B567E1A5C92A900F2D6B0 /* CoreDataKit+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataKit+Promise.swift"; sourceTree = "<group>"; };
+		E2DDC2A81BC2CC78007186AD /* DispatchMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 			children = (
 				E2857EEE1B8DC09E00A9B97C /* Combinators.swift */,
 				E2857EEF1B8DC09E00A9B97C /* Delay+Promise.swift */,
+				E2DDC2A81BC2CC78007186AD /* DispatchMethod.swift */,
 				E2857EF11B8DC09E00A9B97C /* Promise.swift */,
 				E2857EF21B8DC09E00A9B97C /* PromiseSource.swift */,
 				E2857EF31B8DC09E00A9B97C /* Result.swift */,
@@ -389,6 +392,7 @@
 				E2406B1F1A5BBD6E000E5C78 /* Alamofire+Promise.swift in Sources */,
 				E26288421A5F38DF0087390A /* TinyNetworking+Promise.swift in Sources */,
 				E22010F41B88EC4800FAF379 /* AVFoundation+Promise.swift in Sources */,
+				E2DDC2A91BC2CC78007186AD /* DispatchMethod.swift in Sources */,
 				E2857EFB1B8DC09E00A9B97C /* State.swift in Sources */,
 				E2857EF91B8DC09E00A9B97C /* PromiseSource.swift in Sources */,
 				E2857EF61B8DC09E00A9B97C /* Delay+Promise.swift in Sources */,
