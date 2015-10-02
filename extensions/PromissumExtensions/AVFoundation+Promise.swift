@@ -8,6 +8,10 @@
 
 import AVFoundation
 
+#if CARTHAGE
+  import Promissum
+#endif
+
 
 extension AVCaptureDevice {
   public static func requestAccessForMediaTypePromise(mediaType: String) -> Promise<Bool, NoError> {

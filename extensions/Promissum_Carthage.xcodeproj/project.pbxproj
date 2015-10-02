@@ -7,19 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E2406B011A5BBB8D000E5C78 /* AlamofirePromiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2406B001A5BBB8D000E5C78 /* AlamofirePromiseTests.swift */; };
-		E26288471A5FBCAA0087390A /* TinyNetworkingPromiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26288461A5FBCAA0087390A /* TinyNetworkingPromiseTests.swift */; };
-		E2E3C39F1BB3C61A0049EAD1 /* Alamofire+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2406B1E1A5BBD6E000E5C78 /* Alamofire+Promise.swift */; settings = {ASSET_TAGS = (); }; };
-		E2FDBED61BBEE6B600FAAEE8 /* Combinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857EEE1B8DC09E00A9B97C /* Combinators.swift */; settings = {ASSET_TAGS = (); }; };
-		E2FDBED71BBEE6B600FAAEE8 /* Delay+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857EEF1B8DC09E00A9B97C /* Delay+Promise.swift */; settings = {ASSET_TAGS = (); }; };
-		E2FDBED81BBEE6B600FAAEE8 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857EF11B8DC09E00A9B97C /* Promise.swift */; settings = {ASSET_TAGS = (); }; };
-		E2FDBED91BBEE6B600FAAEE8 /* PromiseSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857EF21B8DC09E00A9B97C /* PromiseSource.swift */; settings = {ASSET_TAGS = (); }; };
-		E2FDBEDA1BBEE6B600FAAEE8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857EF31B8DC09E00A9B97C /* Result.swift */; settings = {ASSET_TAGS = (); }; };
-		E2FDBEDB1BBEE6B600FAAEE8 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857EF41B8DC09E00A9B97C /* State.swift */; settings = {ASSET_TAGS = (); }; };
-		E2FDBEDC1BBEE6DA00FAAEE8 /* CoreDataKit+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B567E1A5C92A900F2D6B0 /* CoreDataKit+Promise.swift */; settings = {ASSET_TAGS = (); }; };
-		E2FDBEDD1BBEE6DE00FAAEE8 /* UIKit+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2218CD11A642966009FE208 /* UIKit+Promise.swift */; settings = {ASSET_TAGS = (); }; };
-		E2FDBEE41BBEECDB00FAAEE8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2FDBEE21BBEECDB00FAAEE8 /* Alamofire.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E2FDBEE51BBEECDB00FAAEE8 /* CoreDataKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2FDBEE31BBEECDB00FAAEE8 /* CoreDataKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E249C69F1BC281C0006E6278 /* Combinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = E249C6861BC28174006E6278 /* Combinators.swift */; settings = {ASSET_TAGS = (); }; };
+		E249C6A01BC281C0006E6278 /* Delay+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E249C6871BC28174006E6278 /* Delay+Promise.swift */; settings = {ASSET_TAGS = (); }; };
+		E249C6A11BC281C0006E6278 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E249C6881BC28174006E6278 /* Promise.swift */; settings = {ASSET_TAGS = (); }; };
+		E249C6A21BC281C0006E6278 /* PromiseSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E249C6891BC28174006E6278 /* PromiseSource.swift */; settings = {ASSET_TAGS = (); }; };
+		E249C6A31BC281C0006E6278 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E249C68A1BC28174006E6278 /* Result.swift */; settings = {ASSET_TAGS = (); }; };
+		E249C6A41BC281C0006E6278 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = E249C68B1BC28174006E6278 /* State.swift */; settings = {ASSET_TAGS = (); }; };
+		E249C6A51BC282E8006E6278 /* Promissum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E249C6971BC2817D006E6278 /* Promissum.framework */; };
+		E249C6A61BC282ED006E6278 /* Promissum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E249C6971BC2817D006E6278 /* Promissum.framework */; };
+		E249C6A71BC282F1006E6278 /* Promissum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E249C6971BC2817D006E6278 /* Promissum.framework */; };
+		E27233961BBF37D800B55A3F /* Alamofire+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2406B1E1A5BBD6E000E5C78 /* Alamofire+Promise.swift */; settings = {ASSET_TAGS = (); }; };
+		E272339A1BBF387A00B55A3F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2FDBEE21BBEECDB00FAAEE8 /* Alamofire.framework */; };
+		E27233D01BBF40A000B55A3F /* CoreDataKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2FDBEE31BBEECDB00FAAEE8 /* CoreDataKit.framework */; };
+		E27233D11BBF40FD00B55A3F /* CoreDataKit+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B567E1A5C92A900F2D6B0 /* CoreDataKit+Promise.swift */; settings = {ASSET_TAGS = (); }; };
+		E27233D21BBF410800B55A3F /* UIKit+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2218CD11A642966009FE208 /* UIKit+Promise.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,39 +29,53 @@
 		E22010F31B88EC4800FAF379 /* AVFoundation+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVFoundation+Promise.swift"; sourceTree = "<group>"; };
 		E2218CD11A642966009FE208 /* UIKit+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Promise.swift"; sourceTree = "<group>"; };
 		E2406AF21A5BBB8D000E5C78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2406AF91A5BBB8D000E5C78 /* PromissumExtensionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PromissumExtensionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2406AFF1A5BBB8D000E5C78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2406B001A5BBB8D000E5C78 /* AlamofirePromiseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofirePromiseTests.swift; sourceTree = "<group>"; };
 		E2406B1E1A5BBD6E000E5C78 /* Alamofire+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alamofire+Promise.swift"; sourceTree = "<group>"; };
-		E262883F1A5F38A30087390A /* tiny-networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "tiny-networking.swift"; path = "External/tiny-networking.swift"; sourceTree = "<group>"; };
-		E26288411A5F38DF0087390A /* TinyNetworking+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TinyNetworking+Promise.swift"; sourceTree = "<group>"; };
-		E26288461A5FBCAA0087390A /* TinyNetworkingPromiseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TinyNetworkingPromiseTests.swift; sourceTree = "<group>"; };
-		E2857EEE1B8DC09E00A9B97C /* Combinators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combinators.swift; sourceTree = "<group>"; };
-		E2857EEF1B8DC09E00A9B97C /* Delay+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Delay+Promise.swift"; sourceTree = "<group>"; };
-		E2857EF11B8DC09E00A9B97C /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
-		E2857EF21B8DC09E00A9B97C /* PromiseSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseSource.swift; sourceTree = "<group>"; };
-		E2857EF31B8DC09E00A9B97C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		E2857EF41B8DC09E00A9B97C /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		E249C6861BC28174006E6278 /* Combinators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Combinators.swift; path = ../src/Promissum/Combinators.swift; sourceTree = "<group>"; };
+		E249C6871BC28174006E6278 /* Delay+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Delay+Promise.swift"; path = "../src/Promissum/Delay+Promise.swift"; sourceTree = "<group>"; };
+		E249C6881BC28174006E6278 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Promise.swift; path = ../src/Promissum/Promise.swift; sourceTree = "<group>"; };
+		E249C6891BC28174006E6278 /* PromiseSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromiseSource.swift; path = ../src/Promissum/PromiseSource.swift; sourceTree = "<group>"; };
+		E249C68A1BC28174006E6278 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = ../src/Promissum/Result.swift; sourceTree = "<group>"; };
+		E249C68B1BC28174006E6278 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = ../src/Promissum/State.swift; sourceTree = "<group>"; };
+		E249C6971BC2817D006E6278 /* Promissum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Promissum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E272338E1BBF37CF00B55A3F /* Promissum_Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Promissum_Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E27233C11BBF406800B55A3F /* Promissum_CoreDataKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Promissum_CoreDataKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E27233CE1BBF407200B55A3F /* Promissum_UIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Promissum_UIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E28B567E1A5C92A900F2D6B0 /* CoreDataKit+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataKit+Promise.swift"; sourceTree = "<group>"; };
-		E2E3C3931BB2E9210049EAD1 /* Promissum_Alamofire_CoreDataKit_UIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Promissum_Alamofire_CoreDataKit_UIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2FDBEE21BBEECDB00FAAEE8 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ../Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		E2FDBEE31BBEECDB00FAAEE8 /* CoreDataKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreDataKit.framework; path = ../Carthage/Build/iOS/CoreDataKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E2406AF61A5BBB8D000E5C78 /* Frameworks */ = {
+		E249C6931BC2817D006E6278 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E2E3C38F1BB2E9210049EAD1 /* Frameworks */ = {
+		E272338A1BBF37CF00B55A3F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2FDBEE41BBEECDB00FAAEE8 /* Alamofire.framework in Frameworks */,
-				E2FDBEE51BBEECDB00FAAEE8 /* CoreDataKit.framework in Frameworks */,
+				E249C6A51BC282E8006E6278 /* Promissum.framework in Frameworks */,
+				E272339A1BBF387A00B55A3F /* Alamofire.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E27233B91BBF406800B55A3F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E249C6A61BC282ED006E6278 /* Promissum.framework in Frameworks */,
+				E27233D01BBF40A000B55A3F /* CoreDataKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E27233C61BBF407200B55A3F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E249C6A71BC282F1006E6278 /* Promissum.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,9 +103,8 @@
 		E2406AE41A5BBB8D000E5C78 = {
 			isa = PBXGroup;
 			children = (
-				E2857EED1B8DC09E00A9B97C /* Promissum */,
+				E249C6851BC2815B006E6278 /* Promissum */,
 				E2406AF01A5BBB8D000E5C78 /* PromissumExtensions */,
-				E2406AFD1A5BBB8D000E5C78 /* PromissumExtensionsTests */,
 				E2406AEF1A5BBB8D000E5C78 /* Products */,
 				9777366651AC4F9A61708497 /* Pods */,
 				8E937B5F5271990EBDA35E96 /* Frameworks */,
@@ -100,8 +114,10 @@
 		E2406AEF1A5BBB8D000E5C78 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E2406AF91A5BBB8D000E5C78 /* PromissumExtensionsTests.xctest */,
-				E2E3C3931BB2E9210049EAD1 /* Promissum_Alamofire_CoreDataKit_UIKit.framework */,
+				E272338E1BBF37CF00B55A3F /* Promissum_Alamofire.framework */,
+				E27233C11BBF406800B55A3F /* Promissum_CoreDataKit.framework */,
+				E27233CE1BBF407200B55A3F /* Promissum_UIKit.framework */,
+				E249C6971BC2817D006E6278 /* Promissum.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,9 +128,7 @@
 				E2406B1E1A5BBD6E000E5C78 /* Alamofire+Promise.swift */,
 				E22010F31B88EC4800FAF379 /* AVFoundation+Promise.swift */,
 				E28B567E1A5C92A900F2D6B0 /* CoreDataKit+Promise.swift */,
-				E26288381A5F387A0087390A /* External */,
 				E2406AF11A5BBB8D000E5C78 /* Supporting Files */,
-				E26288411A5F38DF0087390A /* TinyNetworking+Promise.swift */,
 				E2218CD11A642966009FE208 /* UIKit+Promise.swift */,
 			);
 			path = PromissumExtensions;
@@ -128,50 +142,44 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E2406AFD1A5BBB8D000E5C78 /* PromissumExtensionsTests */ = {
+		E249C6851BC2815B006E6278 /* Promissum */ = {
 			isa = PBXGroup;
 			children = (
-				E2406B001A5BBB8D000E5C78 /* AlamofirePromiseTests.swift */,
-				E2406AFE1A5BBB8D000E5C78 /* Supporting Files */,
-				E26288461A5FBCAA0087390A /* TinyNetworkingPromiseTests.swift */,
-			);
-			path = PromissumExtensionsTests;
-			sourceTree = "<group>";
-		};
-		E2406AFE1A5BBB8D000E5C78 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E2406AFF1A5BBB8D000E5C78 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E26288381A5F387A0087390A /* External */ = {
-			isa = PBXGroup;
-			children = (
-				E262883F1A5F38A30087390A /* tiny-networking.swift */,
-			);
-			name = External;
-			sourceTree = "<group>";
-		};
-		E2857EED1B8DC09E00A9B97C /* Promissum */ = {
-			isa = PBXGroup;
-			children = (
-				E2857EEE1B8DC09E00A9B97C /* Combinators.swift */,
-				E2857EEF1B8DC09E00A9B97C /* Delay+Promise.swift */,
-				E2857EF11B8DC09E00A9B97C /* Promise.swift */,
-				E2857EF21B8DC09E00A9B97C /* PromiseSource.swift */,
-				E2857EF31B8DC09E00A9B97C /* Result.swift */,
-				E2857EF41B8DC09E00A9B97C /* State.swift */,
+				E249C6861BC28174006E6278 /* Combinators.swift */,
+				E249C6871BC28174006E6278 /* Delay+Promise.swift */,
+				E249C6881BC28174006E6278 /* Promise.swift */,
+				E249C6891BC28174006E6278 /* PromiseSource.swift */,
+				E249C68A1BC28174006E6278 /* Result.swift */,
+				E249C68B1BC28174006E6278 /* State.swift */,
 			);
 			name = Promissum;
-			path = ../src/Promissum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		E2E3C3901BB2E9210049EAD1 /* Headers */ = {
+		E249C6941BC2817D006E6278 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E272338B1BBF37CF00B55A3F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E27233BC1BBF406800B55A3F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E27233C91BBF407200B55A3F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -181,42 +189,76 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		E2406AF81A5BBB8D000E5C78 /* PromissumExtensionsTests */ = {
+		E249C6961BC2817D006E6278 /* Promissum */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2406B071A5BBB8D000E5C78 /* Build configuration list for PBXNativeTarget "PromissumExtensionsTests" */;
+			buildConfigurationList = E249C69C1BC2817D006E6278 /* Build configuration list for PBXNativeTarget "Promissum" */;
 			buildPhases = (
-				0E83D9668BACE7E613AA5231 /* Check Pods Manifest.lock */,
-				E2406AF51A5BBB8D000E5C78 /* Sources */,
-				E2406AF61A5BBB8D000E5C78 /* Frameworks */,
-				E2406AF71A5BBB8D000E5C78 /* Resources */,
-				3DEF76A323F0482C2462F248 /* Embed Pods Frameworks */,
-				E93AA634DECF00B732EF8E29 /* Copy Pods Resources */,
+				E249C6921BC2817D006E6278 /* Sources */,
+				E249C6931BC2817D006E6278 /* Frameworks */,
+				E249C6941BC2817D006E6278 /* Headers */,
+				E249C6951BC2817D006E6278 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = PromissumExtensionsTests;
-			productName = PromissumExtensionsTests;
-			productReference = E2406AF91A5BBB8D000E5C78 /* PromissumExtensionsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			name = Promissum;
+			productName = Promissum;
+			productReference = E249C6971BC2817D006E6278 /* Promissum.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		E2E3C3921BB2E9210049EAD1 /* Promissum_Alamofire_CoreDataKit_UIKit */ = {
+		E272338D1BBF37CF00B55A3F /* Promissum_Alamofire */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2E3C39A1BB2E9210049EAD1 /* Build configuration list for PBXNativeTarget "Promissum_Alamofire_CoreDataKit_UIKit" */;
+			buildConfigurationList = E27233931BBF37CF00B55A3F /* Build configuration list for PBXNativeTarget "Promissum_Alamofire" */;
 			buildPhases = (
-				E2E3C38E1BB2E9210049EAD1 /* Sources */,
-				E2E3C38F1BB2E9210049EAD1 /* Frameworks */,
-				E2E3C3901BB2E9210049EAD1 /* Headers */,
-				E2E3C3911BB2E9210049EAD1 /* Resources */,
+				E27233891BBF37CF00B55A3F /* Sources */,
+				E272338A1BBF37CF00B55A3F /* Frameworks */,
+				E272338B1BBF37CF00B55A3F /* Headers */,
+				E272338C1BBF37CF00B55A3F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Promissum_Alamofire_CoreDataKit_UIKit;
-			productName = Promissum_Alamofire_CoreDataKit_UIKit;
-			productReference = E2E3C3931BB2E9210049EAD1 /* Promissum_Alamofire_CoreDataKit_UIKit.framework */;
+			name = Promissum_Alamofire;
+			productName = Promissum.Alamofire;
+			productReference = E272338E1BBF37CF00B55A3F /* Promissum_Alamofire.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E27233B61BBF406800B55A3F /* Promissum_CoreDataKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E27233BE1BBF406800B55A3F /* Build configuration list for PBXNativeTarget "Promissum_CoreDataKit" */;
+			buildPhases = (
+				E27233B71BBF406800B55A3F /* Sources */,
+				E27233B91BBF406800B55A3F /* Frameworks */,
+				E27233BC1BBF406800B55A3F /* Headers */,
+				E27233BD1BBF406800B55A3F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Promissum_CoreDataKit;
+			productName = Promissum.Alamofire;
+			productReference = E27233C11BBF406800B55A3F /* Promissum_CoreDataKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E27233C31BBF407200B55A3F /* Promissum_UIKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E27233CB1BBF407200B55A3F /* Build configuration list for PBXNativeTarget "Promissum_UIKit" */;
+			buildPhases = (
+				E27233C41BBF407200B55A3F /* Sources */,
+				E27233C61BBF407200B55A3F /* Frameworks */,
+				E27233C91BBF407200B55A3F /* Headers */,
+				E27233CA1BBF407200B55A3F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Promissum_UIKit;
+			productName = Promissum.Alamofire;
+			productReference = E27233CE1BBF407200B55A3F /* Promissum_UIKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -229,11 +271,11 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Tom Lokhorst";
 				TargetAttributes = {
-					E2406AF81A5BBB8D000E5C78 = {
-						CreatedOnToolsVersion = 6.1.1;
+					E249C6961BC2817D006E6278 = {
+						CreatedOnToolsVersion = 7.0.1;
 					};
-					E2E3C3921BB2E9210049EAD1 = {
-						CreatedOnToolsVersion = 7.0;
+					E272338D1BBF37CF00B55A3F = {
+						CreatedOnToolsVersion = 7.0.1;
 					};
 				};
 			};
@@ -249,21 +291,37 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E2406AF81A5BBB8D000E5C78 /* PromissumExtensionsTests */,
-				E2E3C3921BB2E9210049EAD1 /* Promissum_Alamofire_CoreDataKit_UIKit */,
+				E249C6961BC2817D006E6278 /* Promissum */,
+				E272338D1BBF37CF00B55A3F /* Promissum_Alamofire */,
+				E27233B61BBF406800B55A3F /* Promissum_CoreDataKit */,
+				E27233C31BBF407200B55A3F /* Promissum_UIKit */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E2406AF71A5BBB8D000E5C78 /* Resources */ = {
+		E249C6951BC2817D006E6278 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E2E3C3911BB2E9210049EAD1 /* Resources */ = {
+		E272338C1BBF37CF00B55A3F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E27233BD1BBF406800B55A3F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E27233CA1BBF407200B55A3F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -272,77 +330,41 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		0E83D9668BACE7E613AA5231 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		3DEF76A323F0482C2462F248 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E93AA634DECF00B732EF8E29 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		E2406AF51A5BBB8D000E5C78 /* Sources */ = {
+		E249C6921BC2817D006E6278 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E26288471A5FBCAA0087390A /* TinyNetworkingPromiseTests.swift in Sources */,
-				E2406B011A5BBB8D000E5C78 /* AlamofirePromiseTests.swift in Sources */,
+				E249C69F1BC281C0006E6278 /* Combinators.swift in Sources */,
+				E249C6A31BC281C0006E6278 /* Result.swift in Sources */,
+				E249C6A01BC281C0006E6278 /* Delay+Promise.swift in Sources */,
+				E249C6A21BC281C0006E6278 /* PromiseSource.swift in Sources */,
+				E249C6A11BC281C0006E6278 /* Promise.swift in Sources */,
+				E249C6A41BC281C0006E6278 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E2E3C38E1BB2E9210049EAD1 /* Sources */ = {
+		E27233891BBF37CF00B55A3F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2FDBEDA1BBEE6B600FAAEE8 /* Result.swift in Sources */,
-				E2FDBEDC1BBEE6DA00FAAEE8 /* CoreDataKit+Promise.swift in Sources */,
-				E2E3C39F1BB3C61A0049EAD1 /* Alamofire+Promise.swift in Sources */,
-				E2FDBED71BBEE6B600FAAEE8 /* Delay+Promise.swift in Sources */,
-				E2FDBED61BBEE6B600FAAEE8 /* Combinators.swift in Sources */,
-				E2FDBED91BBEE6B600FAAEE8 /* PromiseSource.swift in Sources */,
-				E2FDBEDB1BBEE6B600FAAEE8 /* State.swift in Sources */,
-				E2FDBEDD1BBEE6DE00FAAEE8 /* UIKit+Promise.swift in Sources */,
-				E2FDBED81BBEE6B600FAAEE8 /* Promise.swift in Sources */,
+				E27233961BBF37D800B55A3F /* Alamofire+Promise.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E27233B71BBF406800B55A3F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E27233D11BBF40FD00B55A3F /* CoreDataKit+Promise.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E27233C41BBF407200B55A3F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E27233D21BBF410800B55A3F /* UIKit+Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,41 +455,7 @@
 			};
 			name = Release;
 		};
-		E2406B081A5BBB8D000E5C78 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD862433C1160DF8DA29F6A3 /* Pods.debug.xcconfig */;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = PromissumExtensionsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nonstrict.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		E2406B091A5BBB8D000E5C78 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5EB348054543B08B297FEBDC /* Pods.release.xcconfig */;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = PromissumExtensionsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nonstrict.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		E2E3C3981BB2E9210049EAD1 /* Debug */ = {
+		E249C69D1BC2817D006E6278 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -475,22 +463,18 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS",
-				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/PromissumExtensions/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nonstrict.Promissum-Alamofire-CoreDataKit-UIKit";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nonstrict.Promissum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		E2E3C3991BB2E9210049EAD1 /* Release */ = {
+		E249C69E1BC2817D006E6278 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
@@ -499,16 +483,141 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS",
-				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/PromissumExtensions/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nonstrict.Promissum-Alamofire-CoreDataKit-UIKit";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nonstrict.Promissum;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		E27233941BBF37CF00B55A3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/PromissumExtensions/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D CARTHAGE";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nonstrict.Promissum-Alamofire";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E27233951BBF37CF00B55A3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/PromissumExtensions/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D CARTHAGE";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nonstrict.Promissum-Alamofire";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		E27233BF1BBF406800B55A3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/PromissumExtensions/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D CARTHAGE";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nonstrict.Promissum-CoreDataKit";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E27233C01BBF406800B55A3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/PromissumExtensions/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D CARTHAGE";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nonstrict.Promissum-CoreDataKit";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		E27233CC1BBF407200B55A3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/PromissumExtensions/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D CARTHAGE";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nonstrict.Promissum-UIKit";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E27233CD1BBF407200B55A3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/PromissumExtensions/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D CARTHAGE";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nonstrict.Promissum-UIKit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -526,20 +635,37 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2406B071A5BBB8D000E5C78 /* Build configuration list for PBXNativeTarget "PromissumExtensionsTests" */ = {
+		E249C69C1BC2817D006E6278 /* Build configuration list for PBXNativeTarget "Promissum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E2406B081A5BBB8D000E5C78 /* Debug */,
-				E2406B091A5BBB8D000E5C78 /* Release */,
+				E249C69D1BC2817D006E6278 /* Debug */,
+				E249C69E1BC2817D006E6278 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E27233931BBF37CF00B55A3F /* Build configuration list for PBXNativeTarget "Promissum_Alamofire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E27233941BBF37CF00B55A3F /* Debug */,
+				E27233951BBF37CF00B55A3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2E3C39A1BB2E9210049EAD1 /* Build configuration list for PBXNativeTarget "Promissum_Alamofire_CoreDataKit_UIKit" */ = {
+		E27233BE1BBF406800B55A3F /* Build configuration list for PBXNativeTarget "Promissum_CoreDataKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E2E3C3981BB2E9210049EAD1 /* Debug */,
-				E2E3C3991BB2E9210049EAD1 /* Release */,
+				E27233BF1BBF406800B55A3F /* Debug */,
+				E27233C01BBF406800B55A3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E27233CB1BBF407200B55A3F /* Build configuration list for PBXNativeTarget "Promissum_UIKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E27233CC1BBF407200B55A3F /* Debug */,
+				E27233CD1BBF407200B55A3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E2E3C3921BB2E9210049EAD1"
-               BuildableName = "Promissum_Alamofire_CoreDataKit_UIKit.framework"
-               BlueprintName = "Promissum_Alamofire_CoreDataKit_UIKit"
+               BlueprintIdentifier = "E27233B61BBF406800B55A3F"
+               BuildableName = "Promissum_CoreDataKit.framework"
+               BlueprintName = "Promissum_CoreDataKit"
                ReferencedContainer = "container:Promissum_Carthage.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2E3C3921BB2E9210049EAD1"
-            BuildableName = "Promissum_Alamofire_CoreDataKit_UIKit.framework"
-            BlueprintName = "Promissum_Alamofire_CoreDataKit_UIKit"
+            BlueprintIdentifier = "E27233B61BBF406800B55A3F"
+            BuildableName = "Promissum_CoreDataKit.framework"
+            BlueprintName = "Promissum_CoreDataKit"
             ReferencedContainer = "container:Promissum_Carthage.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2E3C3921BB2E9210049EAD1"
-            BuildableName = "Promissum_Alamofire_CoreDataKit_UIKit.framework"
-            BlueprintName = "Promissum_Alamofire_CoreDataKit_UIKit"
+            BlueprintIdentifier = "E27233B61BBF406800B55A3F"
+            BuildableName = "Promissum_CoreDataKit.framework"
+            BlueprintName = "Promissum_CoreDataKit"
             ReferencedContainer = "container:Promissum_Carthage.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

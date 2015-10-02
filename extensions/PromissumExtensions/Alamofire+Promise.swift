@@ -9,6 +9,9 @@
 import Foundation
 import Alamofire
 
+#if CARTHAGE
+  import Promissum
+#endif
 
 public enum AlamofirePromiseError : ErrorType {
   case JsonDecodeError

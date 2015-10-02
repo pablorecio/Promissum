@@ -10,6 +10,10 @@ import Foundation
 import CoreData
 import CoreDataKit
 
+#if CARTHAGE
+  import Promissum
+#endif
+
 
 extension CDK {
   public class func performBlockOnBackgroundContextPromise(block: PerformBlock) -> Promise<CommitAction, CoreDataKitError> {

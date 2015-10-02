@@ -8,6 +8,10 @@
 
 import UIKit
 
+#if CARTHAGE
+  import Promissum
+#endif
+
 extension UIView {
   public class func animatePromise(duration duration: NSTimeInterval, animations: () -> Void) -> Promise<Bool, NoError> {
     let source = PromiseSource<Bool, NoError>()
