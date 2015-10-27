@@ -13,53 +13,67 @@ import Alamofire
   import Promissum
 #endif
 
-public enum AlamofirePromiseError : ErrorType {
-  case JsonDecodeError
-  case HttpNotFound(result: Alamofire.Result<AnyObject>)
-  case HttpError(status: Int, result: Alamofire.Result<AnyObject>?)
-  case UnknownError(error: ErrorType, data: NSData?)
+public struct AFPValue<T> : ErrorType {
+  public let request: NSURLRequest?
+  public let response: NSHTTPURLResponse?
+  public let value: T
+}
+
+public struct AFPError : ErrorType {
+  public let request: NSURLRequest?
+  public let response: NSHTTPURLResponse?
+  public let data: NSData?
+  public let error: ErrorType
 }
 
 extension Request {
 
-  public func responseDecodePromise<T>(decoder: AnyObject -> T?) -> Promise<T, AlamofirePromiseError> {
+  public func responsePromise<T: ResponseSerializer, V where T.SerializedObject == V>(
+    queue queue: dispatch_queue_t? = nil, responseSerializer: T) -> Promise<AFPValue<V>, AFPError> {
 
-    return self.responseJSONPromise()
-      .flatMap { json in
-        if let value = decoder(json) {
-          return Promise(value: value)
-        }
-        else {
-          return Promise(error: AlamofirePromiseError.JsonDecodeError)
-        }
-      }
-  }
+    let source = PromiseSource<AFPValue<V>, AFPError>()
 
-  public func responseJSONPromise() -> Promise<AnyObject, AlamofirePromiseError> {
-    let source = PromiseSource<AnyObject, AlamofirePromiseError>()
-
-    self.responseJSON { (request, response, result) -> Void in
-      if let resp = response {
-        if resp.statusCode == 404 {
-          source.reject(AlamofirePromiseError.HttpNotFound(result: result))
-          return
-        }
-
-        if resp.statusCode < 200 || resp.statusCode > 299 {
-          source.reject(AlamofirePromiseError.HttpError(status: resp.statusCode, result: result))
-          return
-        }
-      }
-
+    self.response(queue: queue, responseSerializer: responseSerializer) { request, response, result in
       switch result {
-      case let .Success(value):
-        source.resolve(value)
-
       case let .Failure(data, error):
-        source.reject(AlamofirePromiseError.UnknownError(error: error, data: data))
+        source.reject(AFPError(request: request, response: response, data: data, error: error))
+      case let.Success(value):
+        source.resolve(AFPValue(request: request, response: response, value: value))
       }
     }
 
     return source.promise
+  }
+}
+
+// MARK: - Data
+
+extension Request {
+  public func responseDataPromise() -> Promise<AFPValue<NSData>, AFPError> {
+    return self.responsePromise(responseSerializer: Request.dataResponseSerializer())
+  }
+}
+
+// MARK: - String
+
+extension Request {
+  public func responseStringPromise(encoding encoding: NSStringEncoding? = nil) -> Promise<AFPValue<String>, AFPError> {
+    return self.responsePromise(responseSerializer: Request.stringResponseSerializer(encoding: encoding))
+  }
+}
+
+// MARK: - JSON
+
+extension Request {
+  public func responseJSONPromise(options options: NSJSONReadingOptions = .AllowFragments) -> Promise<AFPValue<AnyObject>, AFPError> {
+    return self.responsePromise(responseSerializer: Request.JSONResponseSerializer(options: options))
+  }
+}
+
+// MARK: - Property List
+
+extension Request {
+  public func responsePropertyListPromise(options options: NSPropertyListReadOptions = NSPropertyListReadOptions()) -> Promise<AFPValue<AnyObject>, AFPError> {
+    return self.responsePromise(responseSerializer: Request.propertyListResponseSerializer(options: options))
   }
 }

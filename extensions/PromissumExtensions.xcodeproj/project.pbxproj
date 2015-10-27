@@ -12,6 +12,9 @@
 		E2406AFA1A5BBB8D000E5C78 /* PromissumExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2406AEE1A5BBB8D000E5C78 /* PromissumExtensions.framework */; };
 		E2406B011A5BBB8D000E5C78 /* AlamofirePromiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2406B001A5BBB8D000E5C78 /* AlamofirePromiseTests.swift */; };
 		E2406B1F1A5BBD6E000E5C78 /* Alamofire+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2406B1E1A5BBD6E000E5C78 /* Alamofire+Promise.swift */; };
+		E26288401A5F38A30087390A /* tiny-networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E262883F1A5F38A30087390A /* tiny-networking.swift */; };
+		E26288421A5F38DF0087390A /* TinyNetworking+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26288411A5F38DF0087390A /* TinyNetworking+Promise.swift */; };
+		E26288471A5FBCAA0087390A /* TinyNetworkingPromiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26288461A5FBCAA0087390A /* TinyNetworkingPromiseTests.swift */; };
 		E2857EF51B8DC09E00A9B97C /* Combinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857EEE1B8DC09E00A9B97C /* Combinators.swift */; settings = {ASSET_TAGS = (); }; };
 		E2857EF61B8DC09E00A9B97C /* Delay+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857EEF1B8DC09E00A9B97C /* Delay+Promise.swift */; settings = {ASSET_TAGS = (); }; };
 		E2857EF81B8DC09E00A9B97C /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857EF11B8DC09E00A9B97C /* Promise.swift */; settings = {ASSET_TAGS = (); }; };
@@ -19,8 +22,8 @@
 		E2857EFA1B8DC09E00A9B97C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857EF31B8DC09E00A9B97C /* Result.swift */; settings = {ASSET_TAGS = (); }; };
 		E2857EFB1B8DC09E00A9B97C /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857EF41B8DC09E00A9B97C /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		E28B567F1A5C92A900F2D6B0 /* CoreDataKit+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B567E1A5C92A900F2D6B0 /* CoreDataKit+Promise.swift */; };
-		EC06AA6C18AAD5C26DEBD5DC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6CC1C6B4D883A36C4F959D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		F4047E204C56122B791F2CEB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6CC1C6B4D883A36C4F959D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EC06AA6C18AAD5C26DEBD5DC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6CC1C6B4D883A36C4F959D /* Pods.framework */; };
+		F4047E204C56122B791F2CEB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6CC1C6B4D883A36C4F959D /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -495,7 +498,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PromissumExtensions/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nonstrict.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -515,7 +518,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PromissumExtensions/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nonstrict.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
