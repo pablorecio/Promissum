@@ -70,45 +70,115 @@ public class PromiseSource<Value, Error> {
   typealias ResultHandler = Result<Value, Error> -> Void
 
   private var handlers: [Result<Value, Error> -> Void] = []
+
   internal let dispatchMethod: DispatchMethod
+  internal let sourceLocation: SourceLocation?
+//  internal let callstack: [SourceLocation]
 
   /// The current state of the PromiseSource
   private(set) public var state: State<Value, Error>
 
   /// Print a warning on deinit of an unresolved PromiseSource
-  public var warnUnresolvedDeinit: Bool
+  public var warnUnresolvedDeinit: Warning
 
   // MARK: Initializers & deinit
 
-  internal convenience init(value: Value) {
-    self.init(state: .Resolved(value), dispatch: .Unspecified, warnUnresolvedDeinit: false)
+  internal convenience init(
+    value: Value,
+    file: String = #file,
+    line: Int = #line,
+    column: Int = #column,
+    function: String = #function)
+  {
+    let sourceLocation = SourceLocation(
+      file: file,
+      line: line,
+      column: column,
+      function: function,
+      name: "PromiseSource")
+
+    self.init(
+      state: .Resolved(value),
+      dispatch: .Unspecified,
+      warnUnresolvedDeinit: .DontWarn,
+      sourceLocation: sourceLocation)
   }
 
-  internal convenience init(error: Error) {
-    self.init(state: .Rejected(error), dispatch: .Unspecified, warnUnresolvedDeinit: false)
+  internal convenience init(
+    error: Error,
+    file: String = #file,
+    line: Int = #line,
+    column: Int = #column,
+    function: String = #function)
+  {
+    let sourceLocation = SourceLocation(
+      file: file,
+      line: line,
+      column: column,
+      function: function,
+      name: "PromiseSource")
+
+    self.init(
+      state: .Rejected(error),
+      dispatch: .Unspecified,
+      warnUnresolvedDeinit: .DontWarn,
+      sourceLocation: sourceLocation)
   }
 
   /// Initialize a new Unresolved PromiseSource
   ///
   /// - parameter warnUnresolvedDeinit: Print a warning on deinit of an unresolved PromiseSource
-  public convenience init(dispatch: DispatchMethod = .Unspecified, warnUnresolvedDeinit: Bool = true) {
-    self.init(state: .Unresolved, dispatch: dispatch, warnUnresolvedDeinit: warnUnresolvedDeinit)
+  public convenience init(
+    dispatch: DispatchMethod = .Unspecified,
+    warnUnresolvedDeinit: Warning = Warning.Print,
+    file: String = #file,
+    line: Int = #line,
+    column: Int = #column,
+    function: String = #function)
+  {
+    let sourceLocation = SourceLocation(
+      file: file,
+      line: line,
+      column: column,
+      function: function,
+      name: "PromiseSource")
+
+    self.init(
+      state: .Unresolved,
+      dispatch: dispatch,
+      warnUnresolvedDeinit: warnUnresolvedDeinit,
+      sourceLocation: sourceLocation)
   }
 
-  internal init(state: State<Value, Error>, dispatch: DispatchMethod, warnUnresolvedDeinit: Bool) {
+  internal init(
+    state: State<Value, Error>,
+    dispatch: DispatchMethod,
+    warnUnresolvedDeinit: Warning,
+    sourceLocation: SourceLocation?)
+  {
     self.state = state
     self.dispatchMethod = dispatch
     self.warnUnresolvedDeinit = warnUnresolvedDeinit
+    self.sourceLocation = sourceLocation
   }
 
   deinit {
-    if warnUnresolvedDeinit {
-      switch state {
-      case .Unresolved:
-        print("PromiseSource.deinit: WARNING: Unresolved PromiseSource deallocated, maybe retain this object?")
-      default:
-        break
-      }
+    guard case .Unresolved = state else { return }
+
+    let callstack = sourceLocation.map { [$0] } ?? []
+
+    let message = "Unresolved PromiseSource deallocated, maybe retain this object?\n"
+      + "Callstack for deallocated object:\n\(callstackString(callstack))"
+
+    switch warnUnresolvedDeinit {
+    case .Print:
+      print("WARNING: \(message)")
+    case .FatalError:
+      fatalError(message)
+    case .Callback(let callback):
+      callback(callstack)
+    case .DontWarn:
+      break
     }
   }
 
@@ -217,4 +287,32 @@ internal func callHandlers<T>(value: T, handlers: [T -> Void], dispatchMethod: D
       }
     }
   }
+}
+
+private func callstackString(callstack: [SourceLocation]) -> String {
+  var lines: [String] = []
+
+  for location in callstack {
+    let name = "\(location.name):".stringByPaddingToLength(18, withString: " ", startingAtIndex: 0)
+    let str = "\(name)\(location.file):\(location.line):\(location.column) - \(location.function)"
+
+    lines.append(str)
+  }
+
+  return lines.joinWithSeparator("\n")
+}
+
+public enum Warning {
+  case Print
+  case FatalError
+  case Callback(callstack: [SourceLocation] -> ())
+  case DontWarn
+}
+
+public struct SourceLocation {
+  let file: String
+  let line: Int
+  let column: Int
+  let function: String
+  let name: String
 }
