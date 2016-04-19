@@ -12,8 +12,34 @@ import Foundation
 ///
 /// The returned Promise resolves (or rejects) when the nested Promise resolves.
 @warn_unused_result(message="Forget to call `then` or `trap`?")
-public func flatten<Value, Error>(promise: Promise<Promise<Value, Error>, Error>) -> Promise<Value, Error> {
-  return promise.flatMap { $0 }
+public func flatten<Value, Error>(
+  promise: Promise<Promise<Value, Error>, Error>,
+  file: String = #file,
+  line: Int = #line,
+  column: Int = #column,
+  function: String = #function) -> Promise<Value, Error>
+{
+  let sourceLocation = SourceLocation(
+    file: file,
+    line: line,
+    column: column,
+    function: function)
+
+  let source = PromiseSource<Value, Error>(
+    state: .Unresolved,
+    dispatch: .Unspecified,
+    warnUnresolvedDeinit: .Print,
+    callstack: [("flatten", sourceLocation)])
+
+  promise
+    .then { p in
+      p
+        .then(source.resolve)
+        .trap(source.reject)
+    }
+    .trap(source.reject)
+
+  return source.promise
 }
 
 
@@ -23,8 +49,45 @@ public func flatten<Value, Error>(promise: Promise<Promise<Value, Error>, Error>
 ///
 /// If either of the two Promises fails, the returned Promise also fails.
 @warn_unused_result(message="Forget to call `then` or `trap`?")
-public func whenBoth<A, B, Error>(promiseA: Promise<A, Error>, _ promiseB: Promise<B, Error>) -> Promise<(A, B), Error> {
-  return promiseA.flatMap { valueA in promiseB.map { valueB in (valueA, valueB) } }
+public func whenBoth<A, B, Error>(
+  promiseA: Promise<A, Error>,
+  _ promiseB: Promise<B, Error>,
+  file: String = #file,
+  line: Int = #line,
+  column: Int = #column,
+  function: String = #function) -> Promise<(A, B), Error>
+{
+  let sourceLocation = SourceLocation(
+    file: file,
+    line: line,
+    column: column,
+    function: function)
+
+  let source = PromiseSource<(A, B), Error>(
+    state: .Unresolved,
+    dispatch: .Unspecified,
+    warnUnresolvedDeinit: .Print,
+    callstack: [("whenBoth", sourceLocation)])
+
+  promiseA
+    .then { valueA in
+      promiseB
+        .then { valueB in
+          source.resolve((valueA, valueB))
+        }
+        .trap(source.reject)
+    }
+
+  promiseB
+    .then { valueB in
+      promiseA
+        .then { valueA in
+          source.resolve((valueA, valueB))
+        }
+        .trap(source.reject)
+    }
+
+  return source.promise
 }
 
 
@@ -35,8 +98,24 @@ public func whenBoth<A, B, Error>(promiseA: Promise<A, Error>, _ promiseB: Promi
 ///
 /// When called with an empty array of promises, this returns a Resolved Promise (with an empty array value).
 @warn_unused_result(message="Forget to call `then` or `trap`?")
-public func whenAll<Value, Error>(promises: [Promise<Value, Error>]) -> Promise<[Value], Error> {
-  let source = PromiseSource<[Value], Error>()
+public func whenAll<Value, Error>(
+  promises: [Promise<Value, Error>],
+  file: String = #file,
+  line: Int = #line,
+  column: Int = #column,
+  function: String = #function) -> Promise<[Value], Error>
+{
+  let sourceLocation = SourceLocation(
+    file: file,
+    line: line,
+    column: column,
+    function: function)
+
+  let source = PromiseSource<[Value], Error>(
+    state: .Unresolved,
+    dispatch: .Unspecified,
+    warnUnresolvedDeinit: .Print,
+    callstack: [("whenAll", sourceLocation)])
   var results = promises.map { $0.value }
   var remaining = promises.count
 
@@ -60,7 +139,7 @@ public func whenAll<Value, Error>(promises: [Promise<Value, Error>]) -> Promise<
       .trap { error in
         source.reject(error)
       }
-  }
+    }
 
   return source.promise
 }
@@ -73,8 +152,46 @@ public func whenAll<Value, Error>(promises: [Promise<Value, Error>]) -> Promise<
 ///
 /// If both Promises fail, the returned Promise also fails.
 @warn_unused_result(message="Forget to call `then` or `trap`?")
-public func whenEither<Value, Error>(promise1: Promise<Value, Error>, _ promise2: Promise<Value, Error>) -> Promise<Value, Error> {
-  return whenAny([promise1, promise2])
+public func whenEither<Value, Error>(
+  promise1: Promise<Value, Error>,
+  _ promise2: Promise<Value, Error>,
+  file: String = #file,
+  line: Int = #line,
+  column: Int = #column,
+  function: String = #function) -> Promise<Value, Error>
+{
+  let sourceLocation = SourceLocation(
+    file: file,
+    line: line,
+    column: column,
+    function: function)
+
+  let source = PromiseSource<Value, Error>(
+    state: .Unresolved,
+    dispatch: .Unspecified,
+    warnUnresolvedDeinit: .Print,
+    callstack: [("whenAny", sourceLocation)])
+  let promises = [promise1, promise2]
+  var remaining = promises.count
+
+  for promise in promises {
+
+    promise
+      .then { value in
+        source.resolve(value)
+      }
+
+    promise
+      .trap { error in
+        remaining = remaining - 1
+
+        if remaining == 0 {
+          source.reject(error)
+        }
+      }
+  }
+
+  return source.promise
 }
 
 /// Creates a Promise that resolves when any of the argument Promises resolves.
@@ -83,8 +200,24 @@ public func whenEither<Value, Error>(promise1: Promise<Value, Error>, _ promise2
 ///
 /// When called with an empty array of promises, this returns a Promise that will never resolve.
 @warn_unused_result(message="Forget to call `then` or `trap`?")
-public func whenAny<Value, Error>(promises: [Promise<Value, Error>]) -> Promise<Value, Error> {
-  let source = PromiseSource<Value, Error>()
+public func whenAny<Value, Error>(
+  promises: [Promise<Value, Error>],
+  file: String = #file,
+  line: Int = #line,
+  column: Int = #column,
+  function: String = #function) -> Promise<Value, Error>
+{
+  let sourceLocation = SourceLocation(
+    file: file,
+    line: line,
+    column: column,
+    function: function)
+
+  let source = PromiseSource<Value, Error>(
+    state: .Unresolved,
+    dispatch: .Unspecified,
+    warnUnresolvedDeinit: .Print,
+    callstack: [("whenAny", sourceLocation)])
   var remaining = promises.count
 
   for promise in promises {
@@ -112,8 +245,24 @@ public func whenAny<Value, Error>(promises: [Promise<Value, Error>]) -> Promise<
 ///
 /// When called with an empty array of promises, this returns a Resolved Promise.
 @warn_unused_result(message="Forget to call `then` or `trap`?")
-public func whenAllFinalized<Value, Error>(promises: [Promise<Value, Error>]) -> Promise<Void, NoError> {
-  let source = PromiseSource<Void, NoError>()
+public func whenAllFinalized<Value, Error>(
+  promises: [Promise<Value, Error>],
+  file: String = #file,
+  line: Int = #line,
+  column: Int = #column,
+  function: String = #function) -> Promise<Void, NoError>
+{
+  let sourceLocation = SourceLocation(
+    file: file,
+    line: line,
+    column: column,
+    function: function)
+
+  let source = PromiseSource<Void, NoError>(
+    state: .Unresolved,
+    dispatch: .Unspecified,
+    warnUnresolvedDeinit: .Print,
+    callstack: [("whenAllFinalized", sourceLocation)])
   var remaining = promises.count
 
   if remaining == 0 {
@@ -140,8 +289,24 @@ public func whenAllFinalized<Value, Error>(promises: [Promise<Value, Error>]) ->
 ///
 /// When called with an empty array of promises, this returns a Promise that will never resolve.
 @warn_unused_result(message="Forget to call `then` or `trap`?")
-public func whenAnyFinalized<Value, Error>(promises: [Promise<Value, Error>]) -> Promise<Void, NoError> {
-  let source = PromiseSource<Void, NoError>()
+public func whenAnyFinalized<Value, Error>(
+  promises: [Promise<Value, Error>],
+  file: String = #file,
+  line: Int = #line,
+  column: Int = #column,
+  function: String = #function) -> Promise<Void, NoError>
+{
+  let sourceLocation = SourceLocation(
+    file: file,
+    line: line,
+    column: column,
+    function: function)
+
+  let source = PromiseSource<Void, NoError>(
+    state: .Unresolved,
+    dispatch: .Unspecified,
+    warnUnresolvedDeinit: .Print,
+    callstack: [("whenAnyFinalized", sourceLocation)])
 
   for promise in promises {
 
