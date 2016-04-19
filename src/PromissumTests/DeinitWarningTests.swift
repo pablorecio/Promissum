@@ -20,7 +20,7 @@ class DeinitWarningTests: XCTestCase {
     XCTAssert(deallocWarning, "Dealloc warning callback should have been called")
   }
 
-  func makeUnresolvedPromise(deallocWarning: [SourceLocation] -> Void) -> Promise<Int, NoError> {
+  func makeUnresolvedPromise(deallocWarning: Callstack -> Void) -> Promise<Int, NoError> {
     let source = PromiseSource<Int, NoError>()
     source.warnUnresolvedDeinit = Warning.Callback(callstack: deallocWarning)
 
@@ -35,7 +35,7 @@ class DeinitWarningTests: XCTestCase {
     XCTAssert(deallocWarning, "Dealloc warning callback should have been called")
   }
 
-  func mappedPromise(deallocWarning: [SourceLocation] -> Void) -> Promise<Int, NoError> {
+  func mappedPromise(deallocWarning: Callstack -> Void) -> Promise<Int, NoError> {
     return makeUnresolvedPromise(deallocWarning).map { x in x * 2 }
   }
 
