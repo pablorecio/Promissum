@@ -14,6 +14,7 @@ import Foundation
 @warn_unused_result(message="Forget to call `then` or `trap`?")
 public func flatten<Value, Error>(
   promise: Promise<Promise<Value, Error>, Error>,
+  warnUnresolvedDeinit: Warning = .Print,
   file: String = #file,
   line: Int = #line,
   column: Int = #column,
@@ -28,7 +29,7 @@ public func flatten<Value, Error>(
   let source = PromiseSource<Value, Error>(
     state: .Unresolved,
     dispatch: .Unspecified,
-    warnUnresolvedDeinit: .Print,
+    warnUnresolvedDeinit: warnUnresolvedDeinit,
     callstack: [("flatten", sourceLocation)])
 
   promise
@@ -52,6 +53,7 @@ public func flatten<Value, Error>(
 public func whenBoth<A, B, Error>(
   promiseA: Promise<A, Error>,
   _ promiseB: Promise<B, Error>,
+  warnUnresolvedDeinit: Warning = .Print,
   file: String = #file,
   line: Int = #line,
   column: Int = #column,
@@ -66,7 +68,7 @@ public func whenBoth<A, B, Error>(
   let source = PromiseSource<(A, B), Error>(
     state: .Unresolved,
     dispatch: .Unspecified,
-    warnUnresolvedDeinit: .Print,
+    warnUnresolvedDeinit: warnUnresolvedDeinit,
     callstack: [("whenBoth", sourceLocation)])
 
   promiseA
@@ -100,6 +102,7 @@ public func whenBoth<A, B, Error>(
 @warn_unused_result(message="Forget to call `then` or `trap`?")
 public func whenAll<Value, Error>(
   promises: [Promise<Value, Error>],
+  warnUnresolvedDeinit: Warning = .Print,
   file: String = #file,
   line: Int = #line,
   column: Int = #column,
@@ -114,7 +117,7 @@ public func whenAll<Value, Error>(
   let source = PromiseSource<[Value], Error>(
     state: .Unresolved,
     dispatch: .Unspecified,
-    warnUnresolvedDeinit: .Print,
+    warnUnresolvedDeinit: warnUnresolvedDeinit,
     callstack: [("whenAll", sourceLocation)])
   var results = promises.map { $0.value }
   var remaining = promises.count
@@ -155,6 +158,7 @@ public func whenAll<Value, Error>(
 public func whenEither<Value, Error>(
   promise1: Promise<Value, Error>,
   _ promise2: Promise<Value, Error>,
+  warnUnresolvedDeinit: Warning = .Print,
   file: String = #file,
   line: Int = #line,
   column: Int = #column,
@@ -169,7 +173,7 @@ public func whenEither<Value, Error>(
   let source = PromiseSource<Value, Error>(
     state: .Unresolved,
     dispatch: .Unspecified,
-    warnUnresolvedDeinit: .Print,
+    warnUnresolvedDeinit: warnUnresolvedDeinit,
     callstack: [("whenAny", sourceLocation)])
   let promises = [promise1, promise2]
   var remaining = promises.count
@@ -202,6 +206,7 @@ public func whenEither<Value, Error>(
 @warn_unused_result(message="Forget to call `then` or `trap`?")
 public func whenAny<Value, Error>(
   promises: [Promise<Value, Error>],
+  warnUnresolvedDeinit: Warning = .Print,
   file: String = #file,
   line: Int = #line,
   column: Int = #column,
@@ -216,7 +221,7 @@ public func whenAny<Value, Error>(
   let source = PromiseSource<Value, Error>(
     state: .Unresolved,
     dispatch: .Unspecified,
-    warnUnresolvedDeinit: .Print,
+    warnUnresolvedDeinit: warnUnresolvedDeinit,
     callstack: [("whenAny", sourceLocation)])
   var remaining = promises.count
 
@@ -247,6 +252,7 @@ public func whenAny<Value, Error>(
 @warn_unused_result(message="Forget to call `then` or `trap`?")
 public func whenAllFinalized<Value, Error>(
   promises: [Promise<Value, Error>],
+  warnUnresolvedDeinit: Warning = .Print,
   file: String = #file,
   line: Int = #line,
   column: Int = #column,
@@ -261,7 +267,7 @@ public func whenAllFinalized<Value, Error>(
   let source = PromiseSource<Void, NoError>(
     state: .Unresolved,
     dispatch: .Unspecified,
-    warnUnresolvedDeinit: .Print,
+    warnUnresolvedDeinit: warnUnresolvedDeinit,
     callstack: [("whenAllFinalized", sourceLocation)])
   var remaining = promises.count
 
@@ -291,6 +297,7 @@ public func whenAllFinalized<Value, Error>(
 @warn_unused_result(message="Forget to call `then` or `trap`?")
 public func whenAnyFinalized<Value, Error>(
   promises: [Promise<Value, Error>],
+  warnUnresolvedDeinit: Warning = .Print,
   file: String = #file,
   line: Int = #line,
   column: Int = #column,
@@ -305,7 +312,7 @@ public func whenAnyFinalized<Value, Error>(
   let source = PromiseSource<Void, NoError>(
     state: .Unresolved,
     dispatch: .Unspecified,
-    warnUnresolvedDeinit: .Print,
+    warnUnresolvedDeinit: warnUnresolvedDeinit,
     callstack: [("whenAnyFinalized", sourceLocation)])
 
   for promise in promises {

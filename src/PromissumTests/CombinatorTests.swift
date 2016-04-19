@@ -211,6 +211,7 @@ class CombinatorTests: XCTestCase {
     var value: Int?
 
     let source1 = PromiseSource<Int, NSError>()
+    source1.warnUnresolvedDeinit = .DontWarn
     let source2 = PromiseSource<Int, NSError>()
     let p1 = source1.promise
     let p2 = source2.promise
@@ -248,7 +249,7 @@ class CombinatorTests: XCTestCase {
 
     let promises: [Promise<Int, NSError>] = []
 
-    whenAny(promises)
+    whenAny(promises, warnUnresolvedDeinit: .DontWarn)
       .then { x in
         value = x
       }
@@ -290,6 +291,7 @@ class CombinatorTests: XCTestCase {
 
     let source1 = PromiseSource<Int, NSError>()
     let source2 = PromiseSource<Int, NSError>()
+    source2.warnUnresolvedDeinit = .DontWarn
     let p1 = source1.promise
     let p2 = source2.promise
 
