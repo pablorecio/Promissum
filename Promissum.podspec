@@ -20,6 +20,7 @@ Promissum really shines when used to combine asynchronous operations from differ
   s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.11'
   s.tvos.deployment_target = '9.0'
+  s.watchos.deployment_target = '2.0'
 
   s.source          = { :git => "https://github.com/tomlokhorst/Promissum.git", :tag => s.version }
   s.requires_arc    = true
@@ -37,6 +38,7 @@ Promissum really shines when used to combine asynchronous operations from differ
 
   s.subspec "CoreDataKit" do |ss|
     ss.ios.deployment_target = '9.0'
+
     ss.source_files = "extensions/PromissumExtensions/CoreDataKit+Promise.swift"
     ss.dependency "Promissum/Core"
     ss.dependency "CoreDataKit", "~> 0.12"
@@ -44,6 +46,8 @@ Promissum really shines when used to combine asynchronous operations from differ
 
   s.subspec "UIKit" do |ss|
     ss.ios.deployment_target = '9.0'
+    ss.watchos.deployment_target = '2.0'
+
     ss.source_files = "extensions/PromissumExtensions/UIKit+Promise.swift"
     ss.dependency "Promissum/Core"
   end

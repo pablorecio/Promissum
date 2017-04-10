@@ -8,6 +8,8 @@
 
 import UIKit
 
+#if !os(watchOS)
+
 extension UIView {
   public class func animatePromise(withDuration duration: TimeInterval, animations: @escaping () -> Void) -> Promise<Bool, NoError> {
     let source = PromiseSource<Bool, NoError>()
@@ -272,3 +274,5 @@ extension UIView {
     fatalError()
   }
 }
+
+#endif
