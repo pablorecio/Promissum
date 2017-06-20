@@ -174,12 +174,7 @@ extension Promise {
 extension Promise where Error : Swift.Error {
 
   /// Returns a Promise where the error is casted to an ErrorType.
-  public func mapError() -> Promise<Value, Swift.Error> {
-    return self.mapError { $0 }
-  }
-
-  @available(*, unavailable, renamed: "mapError")
   public func mapErrorType() -> Promise<Value, Swift.Error> {
-    fatalError()
+    return self.mapError { $0 }
   }
 }
